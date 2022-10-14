@@ -1,7 +1,7 @@
 [
   {
     "name": "Logger Catchall",
-    "isActive": "yes",
+    "isActive": "no",
 	"seconds": "1",
   }
 ]

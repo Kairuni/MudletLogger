@@ -1,9 +1,9 @@
-NLogger = NLogger or {
+Logger = Logger or {
   activeLoggers = {},
   path = getMudletHomeDir() .. "/log/",
 };
 
--- Default path behavior - you're on your own if you change NLogger.path.
+-- Default path behavior - you're on your own if you change Logger.path.
 if (path == getMudletHomeDir() .. "/log/") then
   local originalDirectory = lfs.currentdir();
   lfs.chdir(getMudletHomeDir());
@@ -15,7 +15,7 @@ if (path == getMudletHomeDir() .. "/log/") then
   end
 end
 
-NLogger.htmlHeader = [[
+Logger.htmlHeader = [[
 <head>
   <style type='text/css'>
     <!--

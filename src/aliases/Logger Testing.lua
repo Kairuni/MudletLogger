@@ -14,7 +14,7 @@ local loggerTests = {
 
 if (#testLoggers == 0) then
   for _,v in ipairs(loggerTests) do
-    local logger = NLogger.createLogger(v[1], v[2]);
+    local logger = Logger.createLogger(v[1], v[2]);
     table.insert(testLoggers, logger);
     logger:start();
   end

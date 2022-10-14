@@ -1,9 +1,9 @@
-function NLogger:enableLogger(logger)
+function Logger:enableLogger(logger)
   enableTimer("Logger Catchall");
   self.activeLoggers[logger.filename] = logger;
 end
 
-function NLogger:disableLogger(logger)
+function Logger:disableLogger(logger)
   self.activeLoggers[logger.filename] = nil;
   if (table.size(self.activeLoggers) == 0) then
     cecho("<red>All active loggers disabled.");
@@ -55,7 +55,7 @@ local function buildLineBufferMap()
   };
 end
 
-function NLogger:handleActiveLoggers(commands)
+function Logger:handleActiveLoggers(commands)
   local lineBuffer = buildLineBufferMap();
   for k,v in pairs(self.activeLoggers) do
     local logSends = commands and v.options.logAllSends;
@@ -71,7 +71,7 @@ function NLogger:handleActiveLoggers(commands)
 end
 
 -- Called to capture a subset of lines. Used for finalizing logs.
-function NLogger:captureLines(logger, endLine)
+function Logger:captureLines(logger, endLine)
   local lineBuffer = buildLineBufferMap(); -- Not really necessary when closing out a single logger, but this is minimal overhead.
   logLoop(logger, endLine or getLastLineNumber(), lineBuffer);
 end

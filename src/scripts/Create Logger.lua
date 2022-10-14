@@ -20,7 +20,7 @@ local mudletTimestampFormat = "hh:mm:ss.zzz ";
 --    keepOpen = true | false (default: true) - Not sure this is actually necessary.
 --    format = html | ans | txt (default: "html") - I don't think this is slow enough to fake an enum vs. just using the string.
 --    logAllSends = true | false (default: false) - This can result in double logging of inputs, but will catch send("...", false).
-function NLogger.createLogger(filename, options)
+function Logger.createLogger(filename, options)
   local logger = {
     filename = filename,
     options = options or {},
@@ -29,7 +29,7 @@ function NLogger.createLogger(filename, options)
   setmetatable(options, optionsMT);
   
   function logger:path() 
-    return NLogger.path .. filename .. 
+    return Logger.path .. filename .. 
               (self.index and tostring(self.index) or "") ..
               (self.options.format and "." .. self.options.format or ".txt")
   end
@@ -53,7 +53,7 @@ function NLogger.createLogger(filename, options)
   function logger:createFile()
     self:openFile();
     if (self.options.format == "html") then
-      self._file:write(NLogger.htmlHeader);
+      self._file:write(Logger.htmlHeader);
     end
   end
   
@@ -101,7 +101,7 @@ function NLogger.createLogger(filename, options)
   end
   
   function logger:start()
-    NLogger:enableLogger(self);
+    Logger:enableLogger(self);
     self:createFile();
     self._lastLineLogged = getLastLineNumber();
     cecho("\n<yellow>Logger Started: " .. self.filename .. "\n");
@@ -109,8 +109,8 @@ function NLogger.createLogger(filename, options)
   
   function logger:stop()
     cecho("\n<red>Logger Ended: " .. self.filename .. "\n");
-    NLogger:disableLogger(self);
-    NLogger:captureLines(self)
+    Logger:disableLogger(self);
+    Logger:captureLines(self)
     if (self._file) then
       self._file:close();
       self._file = nil;

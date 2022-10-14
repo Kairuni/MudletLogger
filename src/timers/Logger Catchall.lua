@@ -1,1 +1,1 @@
-NLogger:handleActiveLoggers();
+Logger:handleActiveLoggers();

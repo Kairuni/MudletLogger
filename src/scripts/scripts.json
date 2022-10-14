@@ -16,6 +16,6 @@
     "isActive": "yes",
 	"eventHandlerList": [
 		"sysDataSendReques"
-	],
-  },
+	]
+  }
 ]

@@ -2,6 +2,6 @@
   {
     "name": "Logger Testing",
     "isActive": "yes",
-	"regex": "^LOGGER TESTING$",
-  },
+	"regex": "^LOGGER TESTING$"
+  }
 ]

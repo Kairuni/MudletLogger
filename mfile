@@ -1,0 +1,8 @@
+{
+	"package": "Logger",
+	"title": "Mudlet Out-of-Buffer Logger",
+	"description": "For those times when you also want to log things that you don't explicitly see.",
+	"version": "0.5",
+	"author": "Keegan",
+	"outputFile": true
+}

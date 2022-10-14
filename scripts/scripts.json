@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Initialize",
+    "isActive": "yes",
+  },
+  {
+    "name": "Logger Handlers",
+    "isActive": "yes",
+  },
+  {
+    "name": "Create Logger",
+    "isActive": "yes",
+  },
+  {
+    "name": "Logger.catchSends",
+    "isActive": "yes",
+	"eventHandlerList": [
+		"sysDataSendReques"
+	],
+  },
+]

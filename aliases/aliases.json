@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Logger Testing",
+    "isActive": "yes",
+	"regex": "^LOGGER TESTING$",
+  },
+]

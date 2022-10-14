@@ -12,3 +12,7 @@ Filler, alias shenanigans.
 ### API
 
 Filler, script shenanigans.
+
+### TODO:
+
+Fix the README up, add log file searching.

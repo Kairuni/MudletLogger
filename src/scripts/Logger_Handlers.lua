@@ -62,6 +62,12 @@ function Logger:handleActiveLoggers(commands)
     -- TODO: This is a bit inefficient with multiple loggers, even though we're only doing the work once. Still multiple iterations. Maybe do this smarter.
     local endLine = logSends and getLastLineNumber() or getLastLineNumber() - 1;
     
+    -- Handle the buffer deletion case. In theory, this COULD miss something if we receive more than 1000 lines in one go. I'm assuming that is uncommon.
+    -- 1000 lines is the default per the Mudlet source code.
+    if (endLine < v._lastLineLogged) then
+      v._lastLineLogged = v._lastLineLogged - (Logger.bufferDeletionSize or 1000);
+    end
+
     logLoop(v, endLine, lineBuffer);
     
     if (logSends) then

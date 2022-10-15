@@ -1,6 +1,7 @@
 Logger = Logger or {
   activeLoggers = {},
   path = getMudletHomeDir() .. "/log/",
+  bufferDeletionSize = 1000,
 };
 
 -- Default path behavior - you're on your own if you change Logger.path.

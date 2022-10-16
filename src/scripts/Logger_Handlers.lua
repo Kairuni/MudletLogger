@@ -64,7 +64,7 @@ function Logger:handleActiveLoggers(commands)
     
     -- Handle the buffer deletion case. In theory, this COULD miss something if we receive more than 1000 lines in one go. I'm assuming that is uncommon.
     -- 1000 lines is the default per the Mudlet source code.
-    if (endLine < v._lastLineLogged) then
+    if (getLastLineNumber() < v._lastLineLogged) then
       v._lastLineLogged = v._lastLineLogged - (Logger.bufferDeletionSize or 1000);
     end
 

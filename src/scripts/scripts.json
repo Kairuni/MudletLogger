@@ -12,6 +12,10 @@
     "isActive": "yes",
   },
   {
+    "name": "Logger Utils",
+    "isActive": "yes",
+  },
+  {
     "name": "Logger.catchSends",
     "isActive": "yes",
 	"eventHandlerList": [

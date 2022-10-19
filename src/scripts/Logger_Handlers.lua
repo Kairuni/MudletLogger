@@ -1,14 +1,20 @@
+function Logger:isActive(logger)
+  return not (self.activeLoggers[logger.filename] == nil);
+end
+
 function Logger:enableLogger(logger)
+  if (Logger:isActive(logger)) then return true; end
   enableTimer("Logger Catchall");
   self.activeLoggers[logger.filename] = logger;
 end
 
 function Logger:disableLogger(logger)
+  if (not Logger:isActive(logger)) then return true; end
   self.activeLoggers[logger.filename] = nil;
   if (table.size(self.activeLoggers) == 0) then
     cecho("<red>All active loggers disabled.");
     disableTimer("Logger Catchall");
-  end  
+  end
 end
 
 Logger.outputFunctionMap = {
@@ -49,7 +55,7 @@ function Logger:handleActiveLoggers()
   local lineBuffer = Logger.buildLineBufferMap();
   for k,v in pairs(self.activeLoggers) do
     local logSends = commands and v.options.logAllSends;
-    
+
     -- Handle the buffer deletion case. In theory, this COULD miss something if we receive more than 1000 lines in one go. I'm assuming that is uncommon.
     -- 1000 lines is the default per the Mudlet source code.
     local bufferCleaned = false;
@@ -57,13 +63,7 @@ function Logger:handleActiveLoggers()
       v._lastLineLogged = v._lastLineLogged - Logger.bufferDeletionSize;
       bufferCleaned = true;
     end
-    
+
     v:update(lineBuffer, bufferCleaned);
   end
 end
-
--- Called to capture a subset of lines. Used for finalizing logs.
---function Logger:captureLines(logger, endLine)
---  local lineBuffer = buildLineBufferMap(); -- Not really necessary when closing out a single logger, but this is minimal overhead.
---  logLoop(logger, endLine or getLastLineNumber(), lineBuffer);
---end

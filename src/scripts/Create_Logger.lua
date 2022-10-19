@@ -143,7 +143,10 @@ function Logger.createLogger(filename, options)
 
   function logger:start()
     self._pendingOutOfBoundsLines = {};
-    Logger:enableLogger(self);
+    if (Logger:enableLogger(self)) then
+      cecho("<red>Logger " .. self.filename .. " was already active.");
+      return;
+    end
     self:createFile();
     self._lastLineLogged = getLastLineNumber();
     cecho("\n<yellow>Logger Started: " .. self.filename .. "\n");
@@ -151,7 +154,10 @@ function Logger.createLogger(filename, options)
 
   function logger:stop()
     cecho("\n<red>Logger Ended: " .. self.filename .. "\n");
-    Logger:disableLogger(self);
+    if (Logger:disableLogger(self)) then
+      cecho("<red>Logger " .. self.filename .. " was already inactive.");
+      return;
+    end
     self:update(Logger.buildLineBufferMap());
     if (self._file) then
       self._file:close();

@@ -10,7 +10,7 @@ if (path == getMudletHomeDir() .. "/log/") then
   lfs.chdir(getMudletHomeDir());
   local success, err, code = lfs.mkdir("log");
   lfs.chdir(originalDirectory);
-  
+
   if (not (success or (err and code == 17))) then
     cecho("<red>WARNING: Failed to create log directory. Logger will not function as anticipated.");
   end
@@ -30,6 +30,50 @@ Logger.htmlHeader = [[
       }
       span {
         white-space: pre-wrap;
+      }
+
+      .displayText {
+        position: relative;
+        border-style: dotted;
+        padding: 1px 1px 1px 1px;
+        border-width: thin;
+      }
+
+      .displayText:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .displayText .tooltip {
+        visibility: hidden;
+        position: absolute;
+        z-index: 1;
+        width: 60em;
+        color: white;
+        background-color: #0f1d33;
+        word-wrap: break-word;
+        border-style: dotted;
+        padding: 5px 5px 5px 5px;
+      }
+
+      #right {
+        left: 100%;
+        top: -8px;
+      }
+
+      #left {
+        right: 0%;
+        top: -8px;
+      }
+
+      #bottom {
+        top: 100%;
+        left: 0%;
+      }
+
+      #top {
+        bottom: 100%;
+        left: 0%;
       }
     -->
   </style>
